@@ -1,5 +1,6 @@
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import GPT4AllEmbeddings
 from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_community.embeddings.bedrock import BedrockEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -70,7 +71,13 @@ def get_embedding_function():
     # embeddings = BedrockEmbeddings(
     #     credentials_profile_name="default", region_name="us-east-1"
     # )
-    embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    #embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    model_name = "all-MiniLM-L6-v2.gguf2.f16.gguf"
+    gpt4all_kwargs = {'allow_download': 'True'}
+    embeddings = GPT4AllEmbeddings(
+        model_name=model_name,
+        gpt4all_kwargs=gpt4all_kwargs
+    )
     return embeddings
 
 
