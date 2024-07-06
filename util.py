@@ -1,6 +1,6 @@
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import GPT4AllEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_community.embeddings.bedrock import BedrockEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -20,6 +20,14 @@ def get_api_key():
         groq_api_key = os.getenv("GROQ_API_KEY", "")
         
         return groq_api_key
+    except Exception as e:
+        print(e)
+
+def get_inference_api_key():
+    try:
+        inference_api_key = os.getenv("INFERENCE_API_KEY", "")
+
+        return inference_api_key
     except Exception as e:
         print(e)
 
@@ -68,11 +76,10 @@ def get_embedding_function():
     #     credentials_profile_name="default", region_name="us-east-1"
     # )
     #embeddings = OllamaEmbeddings(model="nomic-embed-text")
-    model_name = "all-MiniLM-L6-v2.gguf2.f16.gguf"
-    gpt4all_kwargs = {'allow_download': 'True'}
-    embeddings = GPT4AllEmbeddings(
-        model_name=model_name,
-        gpt4all_kwargs=gpt4all_kwargs
+    inference_api_key = get_inference_api_key()
+
+    embeddings = HuggingFaceInferenceAPIEmbeddings(
+        api_key=inference_api_key, model_name="sentence-transformers/all-MiniLM-l6-v2"
     )
     return embeddings
 
