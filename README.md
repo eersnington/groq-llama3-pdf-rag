@@ -1,9 +1,9 @@
-# PDF Genie
+# Doc Chat
 RAG based generative AI application that allows to chat with PDF documents. Developed using Streamlit and Groq AI Inference technology.
 
-# PDF Genie
+# Doc Chat
 
-**PDF Genie** is an AI-powered app that enables users to interact with and extract insights from PDF documents via a chat interface. Leveraging Groq AI, users can upload PDFs and ask context-based questions to get accurate information.
+**Doc Chat** is an AI-powered app that enables users to interact with and extract insights from PDF documents via a chat interface. Leveraging Groq AI, users can upload PDFs and ask context-based questions to get accurate information.
 
 ## Key Features
 - **PDF Upload and Processing:** Supports multiple PDF uploads for AI interrogation.
