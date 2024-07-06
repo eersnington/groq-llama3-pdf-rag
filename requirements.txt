@@ -8,3 +8,4 @@ streamlit-option-menu
 python-dotenv
 boto3
 faiss-cpu
+gpt4all
