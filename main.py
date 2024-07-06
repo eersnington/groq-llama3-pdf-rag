@@ -5,7 +5,7 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
 # --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="PDF Genie", page_icon=":robot_face:", layout="centered")
+st.set_page_config(page_title="Doc Chat", page_icon=":robot_face:", layout="centered")
 
 # --- SETUP SESSION STATE VARIABLES ---
 if "vector_store" not in st.session_state:
@@ -29,14 +29,14 @@ groq_api_key = sidebar_api_key_configuration()
 model = sidebar_groq_model_selection()
 
 # --- MAIN PAGE CONFIGURATION ---
-st.title("PDF Genie :robot_face:")
+st.title("Doc Chat :robot_face:")
 st.write("*Interrogate Documents :books:, Ignite Insights: AI at Your Service*")
 st.write(':blue[***Powered by Groq AI Inference Technology***]')
 
 # ---- NAVIGATION MENU -----
 selected = option_menu(
     menu_title=None,
-    options=["PDF Genie", "Reference", "About"],
+    options=["Doc Chat", "Reference", "About"],
     icons=["robot", "bi-file-text-fill", "app"],  # https://icons.getbootstrap.com
     orientation="horizontal",
 )
@@ -53,8 +53,8 @@ prompt = ChatPromptTemplate.from_template(
     Questions: {input}
     """
 )
-# ----- SETUP PDF GENIE MENU ------
-if selected == "PDF Genie":
+# ----- SETUP Doc Chat MENU ------
+if selected == "Doc Chat":
     st.subheader("Upload PDF(s)")
     pdf_docs = st.file_uploader("Upload your PDFs", type=['pdf'], accept_multiple_files=True,
                                 disabled=not st.session_state.prompt_activation, label_visibility='collapsed')
